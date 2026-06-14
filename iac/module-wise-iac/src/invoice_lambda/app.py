@@ -1,6 +1,7 @@
 import json
 
-#sample lambda
+#sample lambda function
+#sample command
 def lambda_handler(event, context):
 
     print(event)
