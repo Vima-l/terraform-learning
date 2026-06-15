@@ -1,0 +1,25 @@
+name: Terraform piepline
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Select Terraform action"
+        required: true
+        type: choice
+        options:
+          - plan
+          - apply
+          - destroy
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: iac/module-wise-iac/main
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
