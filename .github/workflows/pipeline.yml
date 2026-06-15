@@ -23,3 +23,20 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Show selected pipeline
+        run: |
+          echo "Selected pepeline:"
+          echo "${{github.event.inputs.pipeline }}"
+
+      - name: Run Plan
+        if: github.event.inputs.pipeline == 'plan'
+        run: echo "Running Terraform plan"
+
+      - name: Run Apply
+        if: github.event.inputs.pipeline == 'apply'
+        run: echo "Running Terraform apply"
+
+      - name: Run Destroy
+        if: github.event.inputs.pipeline == 'destroy'
+        run: echo "Running Terraform destroy"
