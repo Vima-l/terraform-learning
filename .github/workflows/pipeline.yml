@@ -26,17 +26,18 @@ jobs:
 
       - name: Show selected pipeline
         run: |
-          echo "Selected pepeline:"
-          echo "${{github.event.inputs.pipeline }}"
+          echo "Selected pipeline:"
+          echo "${{ github.event.inputs.action }}"
 
       - name: Run Plan
-        if: github.event.inputs.pipeline == 'plan'
+        if: github.event.inputs.action == 'plan'
         run: echo "Running Terraform plan"
 
       - name: Run Apply
-        if: github.event.inputs.pipeline == 'apply'
+        if: github.event.inputs.action == 'apply'
         run: echo "Running Terraform apply"
 
       - name: Run Destroy
-        if: github.event.inputs.pipeline == 'destroy'
-        run: echo "Running Terraform destroy"
+        if: github.event.inputs.action == 'destroy'
+        run: echo "Running Terraform destroy"ithub.event.inputs.pipeline == 'destroy'
+              run: echo "Running Terraform destroy"
