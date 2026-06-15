@@ -40,6 +40,11 @@ jobs:                                                               # a pipeline
           echo "Selected pipeline:"
           echo "${{ github.event.inputs.action }}"
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: v2.8.0
+
       - name: Terraform init
         run: |
           terraform init -input=false
