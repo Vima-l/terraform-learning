@@ -35,22 +35,30 @@ jobs:                                                               # a pipeline
           role-to-assume: arn:aws:iam::102156246557:role/github-role-for-oidc
           aws-region: us-east-1
 
-      - name: Check command execution
-        run: aws sts get-caller-identity
-
       - name: Show selected pipeline
         run: |
           echo "Selected pipeline:"
           echo "${{ github.event.inputs.action }}"
 
-      - name: Run Plan
+      - name: Terraform init
+        run: |
+          terraform init -input=false
+          echo "terraform initialized"
+
+      - name: Terraform plan
         if: github.event.inputs.action == 'plan'
-        run: echo "Running Terraform plan"
+        run: |
+          terraform plan -input=false
+          echo "Plan executed successfully"
 
-      - name: Run Apply
+      - name: Terraform apply
         if: github.event.inputs.action == 'apply'
-        run: echo "Running Terraform apply"
+        run: |
+          terraform apply -input=false -auto-approve
+          echo "Infra applied"
 
-      - name: Run Destroy
+      - name: Terraform destroy
         if: github.event.inputs.action == 'destroy'
-        run: echo "Running Terraform destroy"
+        run: |
+          terraform destroy -input=false -auto-approve
+          echo "Infra destroyed"
