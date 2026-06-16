@@ -8,5 +8,5 @@ def lambda_handler(event, context):
 
     return {
         "statusCode": 200,
-        "body": json.dumps({"event": event})
+        "body": "Helloa from invoice lambda"
     }
